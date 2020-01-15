@@ -1,0 +1,1 @@
+# GT08S-open-firmware
