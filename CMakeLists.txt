@@ -1,4 +1,3 @@
-set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 project(GT08S)
 file(GLOB include_dirs "*/include/")
 include_directories(include_dirs)

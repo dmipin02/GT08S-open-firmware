@@ -1,0 +1,10 @@
+[
+    {
+      "name": "GT08S : GCC for arm-none-eabi 9.2.1",
+      "compilers": {
+        "C": "arm-none-eabi-gcc.exe",
+        "CXX": "arm-none-eabi-g++.exe"
+      },
+      "toolchainFile": "GT08S.cmake"
+    }
+  ]
