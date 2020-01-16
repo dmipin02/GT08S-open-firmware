@@ -4,4 +4,4 @@
 - [ ] **KERNEL**        EXT_BOOTLOADER
 - [ ] **SYSTEM**        ROM
 ## Licensing
-licensed under the GNU GPL-3.0 license (see (LICENSE)[./LICENSE]).
+licensed under the GNU GPL-3.0 license (see [LICENSE]).
