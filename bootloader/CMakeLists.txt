@@ -5,6 +5,6 @@ add_custom_command(
    TARGET bootloader
    WORKING_DIRECTORY ../../
    POST_BUILD
-   COMMAND "arm-none-eabi-objcopy -O binary ./build/bootloader/bootloader ./output/INT_BOOTLOADER"
+   COMMAND "arm-none-eabi-objcopy -S -O binary ./build/bootloader/bootloader ./output/INT_BOOTLOADER"
 )
 #execute_process(COMMAND "tools/mtk_signer.exe output/INT_BOOTLOADER")
