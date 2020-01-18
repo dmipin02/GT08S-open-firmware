@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - dev
+
+jobs:
+  build:
+    name: build success check
+    runs-on: windows-latest
+    steps:
+      - name: Use dev branch
+        uses: actions/checkout@v2
+        with:
+          ref: dev
+      - name: Build with CMAKE
+        uses: lukka/run-cmake@v0
+        with:
+          cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
+          cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+          buildDirectory: '${{ runner.workspace }}/build/test'
+          cmakeAppendedArgs: "--config MinSizeRel --target all -- -j 4"
+      - name: Sign firmware bins
+        run: '${{ github.workspace }}/sign.bat'
