@@ -1,15 +1,21 @@
-set(CMAKE_CXX_FLAGS "")
 set(CMAKE_C_FLAGS "")
-add_executable(bootloader src/boot.c)
-target_compile_options(bootloader INTERFACE "-march armv5te -mtune arm9e -mthumb-interwork -fdata-sections -ffunction-sections -Os -g2 -nostdlib --heap=0x0000 -eb_lib=n")
-target_link_options(bootloader INTERFACE "-Wl --gc-sections -T linker.ld")
-set_target_properties(bootloader PROPERTIES OUTPUT_NAME "bootloader.elf")
-set(MAKE_SIGN "${CMAKE_CURRENT_SOURCE_DIR}/tools/mtk_signer")
-add_custom_target(INT_BOOTLOADER ALL)
+set(CMAKE_CXX_FLAGS "")
+set(BL_LINKER linker.ld)
+set(BL_FILES src/startup.S src/boot.c)
+add_custom_target(bootloader ALL
+   COMMENT "bootloader"
+   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+   COMMAND ${CMAKE_C_COMPILER} -march=armv5te -mtune=arm9e -mthumb-interwork -fdata-sections -ffunction-sections -Os -g2 -nostdlib ${BL_FILES} -T ${BL_LINKER} -o ${CMAKE_CURRENT_BINARY_DIR}/bootloader.elf
+)
+add_custom_target(INT_BOOTLOADER ALL
+   COMMENT "INT_BOOTLOADER"
+   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+   COMMAND ${CMAKE_OBJCOPY} -S -O binary ${CMAKE_CURRENT_BINARY_DIR}/bootloader.elf ../build/output/INT_BL.bin
+)
 add_dependencies(INT_BOOTLOADER bootloader)
-add_custom_command(
-   TARGET INT_BOOTLOADER
-   POST_BUILD
-   COMMAND ${CMAKE_OBJCOPY} -S -O binary bootloader.elf ../output/INT_BL.bin
-) 
-# TODO: сделать автоподписывание int_bootloader
+add_custom_target(INT_BOOTLOADER_SIGNED ALL
+   COMMENT "INT_BOOTLOADER sign"
+   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+   COMMAND tools\\mtk_signer.exe build/output/INT_BL.bin
+)
+add_dependencies(INT_BOOTLOADER_SIGNED INT_BOOTLOADER)
