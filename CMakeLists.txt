@@ -1,3 +1,5 @@
+set(CMAKE_CXX_FLAGS "")
+set(CMAKE_C_FLAGS "")
 project(GT08S)
 file(GLOB include_dirs "*/include/")
 include_directories(include_dirs)
