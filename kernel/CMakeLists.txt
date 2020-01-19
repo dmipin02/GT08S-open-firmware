@@ -1,8 +1,9 @@
 set(CMAKE_C_FLAGS "")
 set(CMAKE_CXX_FLAGS "")
 set(KE_LINKER linker.ld)
+file(GLOB KE_FILES_ASM src/*.S)
 file(GLOB KE_FILES_C src/*.c)
-set(KE_FILES ${KE_FILES_C})
+set(KE_FILES ${KE_FILES_ASM} ${KE_FILES_C})
 
 add_custom_target(kernel ALL
    COMMENT "kernel"
