@@ -1,8 +1,8 @@
 set(CMAKE_C_FLAGS "")
 set(CMAKE_CXX_FLAGS "")
 set(BL_LINKER linker.ld)
-file(GLOB BL_FILES_ASM src/**.S)
-file(GLOB BL_FILES_C src/**.c)
+file(GLOB_RECURSE BL_FILES_ASM src/*.S)
+file(GLOB_RECURSE BL_FILES_C src/*.c)
 set(BL_FILES ${BL_FILES_ASM} ${BL_FILES_C})
 add_custom_target(bootloader ALL
    COMMENT "bootloader"

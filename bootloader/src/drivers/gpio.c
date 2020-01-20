@@ -1,5 +1,5 @@
 #include <mt6261.h>
-#include "gpio.h"
+#include "drivers/gpio.h"
 
 void GPIO_Initialize(void)
 {
