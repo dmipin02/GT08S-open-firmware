@@ -2,7 +2,7 @@
 #include <mtktypes.h>
 #include <utils.h>
 #include <sha1.h>
-#include <vibro.h>
+#include <drivers/vibro.h>
 #include <drivers/lcd.h>
 
 #define _USEBATTERY_ (1)
@@ -62,8 +62,8 @@ void *BL_CheckFileByDescriptor(BL_Descr File)
 int main(void)
 {
     pSF_HEADER_v1 sf_header = (pSF_HEADER_v1)ROM_Image_Base;
-    // HW_VibroToggle(true);
 
+    HW_Vibro_Toggle(true);
     HW_LCD_SetISINKMode(false);
     HW_LCD_SetISINKParameters(ISINK_CH0, IC_8mA, true);
 

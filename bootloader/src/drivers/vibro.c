@@ -1,6 +1,6 @@
-#include <vibro.h>
+#include <drivers/vibro.h>
 
-void HW_VibroToggle(bool enabled)
+void HW_Vibro_Toggle(bool enabled)
 {
 #ifdef VIBRVoltage
     uint16_t En = (enabled) ? RG_VIBR_EN : 0;

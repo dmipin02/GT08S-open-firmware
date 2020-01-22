@@ -18,4 +18,4 @@
 
 #define VIBRVoltage VIBR_VO18V
 
-void HW_VibroToggle(bool enabled);
+void HW_Vibro_Toggle(bool enabled);
