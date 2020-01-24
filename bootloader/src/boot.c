@@ -4,6 +4,7 @@
 #include <sha1.h>
 #include <drivers/vibro.h>
 #include <drivers/lcd.h>
+#include <drivers/speaker.h>
 
 #define _USEBATTERY_ (1)
 
