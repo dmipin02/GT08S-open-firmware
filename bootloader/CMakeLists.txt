@@ -1,13 +1,14 @@
 set(CMAKE_C_FLAGS "")
 set(CMAKE_CXX_FLAGS "")
 set(BL_LINKER linker.ld)
-file(GLOB_RECURSE BL_FILES_ASM src/*.S)
-file(GLOB_RECURSE BL_FILES_C src/*.c)
+file(GLOB_RECURSE BL_FILES_ASM src/*/*.S)
+file(GLOB_RECURSE BL_FILES_C src/*/*.c)
 set(BL_FILES ${BL_FILES_ASM} ${BL_FILES_C})
+
 add_custom_target(bootloader ALL
    COMMENT "bootloader"
    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-   COMMAND ${CMAKE_C_COMPILER} ${global_includes} -march=armv5te -mtune=arm9e -mthumb-interwork -fdata-sections -ffunction-sections -Os -g2 -nostdlib ${BL_FILES} -T ${BL_LINKER} -o ${CMAKE_CURRENT_BINARY_DIR}/bootloader.elf
+   COMMAND ${CMAKE_C_COMPILER} ${global_includes} -march=armv5te -mtune=arm9e -mthumb-interwork -fdata-sections -ffunction-sections -Os -g2 -nostdlib ${BL_FILES} ${CMAKE_CURRENT_BINARY_DIR}/../stdlib/stdlib.o -T ${BL_LINKER} -o ${CMAKE_CURRENT_BINARY_DIR}/bootloader.elf -lgcc
 )
 add_custom_target(INT_BOOTLOADER ALL
    COMMENT "INT_BOOTLOADER"
