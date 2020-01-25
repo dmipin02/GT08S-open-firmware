@@ -177,7 +177,9 @@ SECTIONS
 	 * used for linker to calculate size of stack sections, and assign
 	 * values to stack symbols later */
 	__StackTop = ORIGIN(TCM) + LENGTH(TCM);
-	__StackLimit = __StackTop - SUMM_StackSz;
+	/*FIXME: investigate why SUMM_StackSz is undefined
+	__StackLimit = __StackTop - SUMM_StackSz;*/
+	__StackLimit = __StackTop - SIZEOF(.stack_dummy);
 
 	.stack_dummy __StackLimit (NOLOAD):
 	{

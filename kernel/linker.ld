@@ -179,7 +179,7 @@ SECTIONS
 	 * used for linker to calculate size of stack sections, and assign
 	 * values to stack symbols later */
 	__StackTop = ORIGIN(RAM) + LENGTH(RAM);
-	__StackLimit = __StackTop - SUMM_StackSz;
+	__StackLimit = __StackTop - SIZEOF(.stack_dummy);
 
 	.stack_dummy __StackLimit (NOLOAD):
 	{
