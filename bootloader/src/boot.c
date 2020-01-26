@@ -3,6 +3,7 @@
 #include <sha1.h>
 #include <picostd.h>
 #include <bootdrivers.h>
+#include <mt6261.h>
 
 extern uint32_t ROM_Image_Base, ROM_Image_Limit;
 
@@ -66,6 +67,9 @@ int main(void)
     EMI_MemoryRemap(MR_FB1RB0); /*  Remap Flash to Bank1, RAM to Bank0.
                                     Now ROM starts from 0x10000000 */
 
+    // Turn on vibration for debugging purposes
+    VIBR_CON0 = RG_VIBR_VOSEL(VIBR_VO18V) | VIBR_ON_SEL | 1;
+
     /* Check SF header for validity */
     if (!strcmp(sf_header->m_identifier, SF_HEADER_ID) &&
         (sf_header->m_ver == SF_HEADER_VER))
@@ -73,8 +77,9 @@ int main(void)
         pBR_Layout_v1 BR_Layout;
 
         /* Check boot regions layout for validity */
+        //FIXME: figure out why strcmp doesn't work properly
         BR_Layout = (pBR_Layout_v1)(sf_header->m_dev_rw_unit + ROM_Image_Base);
-        if (!strcmp(BR_Layout->m_identifier, BRLYT_ID) &&
+        if (strcmp(BR_Layout->m_identifier, BRLYT_ID) &&
             (BR_Layout->m_ver == BRLYT_VER))
         {
             uint32_t i;
