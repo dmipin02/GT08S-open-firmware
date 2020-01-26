@@ -1,4 +1,6 @@
 #pragma once
+#include <utils.h>
+#include <picostd.h>
 
 #define SHA1BLOCKSIZE 64
 

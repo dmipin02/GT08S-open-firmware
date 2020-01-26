@@ -1,4 +1,3 @@
-#include <systypes.h>
 #include <sha1.h>
 
 #define Rol(word, bits) (((word) << bits) | ((word) >> (32 - (bits))))
@@ -14,23 +13,6 @@
 #define HC4 = 0xC3D2E1F0;
 
 TSHA1 Hash;
-
-void *memcpy(void *restrict s1, const void *restrict s2, size_t n)
-{
-    char *c1 = (char *)s1;
-    const char *c2 = (const char *)s2;
-    for (size_t i = 0; i < n; ++i)
-        c1[i] = c2[i];
-    return s1;
-}
-
-void *memset(void *s, int c, size_t n)
-{
-    unsigned char *p = s;
-    while (n--)
-        *p++ = (unsigned char)c;
-    return s;
-}
 
 void SHA1_Initialize(void)
 {
