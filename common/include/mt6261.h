@@ -24,6 +24,7 @@
 #define USB_base 0xA0900000        //USB Controller
 #define KP_base 0xA00D0000         //Keypad controller
 #define PLL_base MIXED_base
+#define SPI_base 0xA01E0000        //Serial peripheral interface
 #define ARM_CONFG_base 0xA0500000
 #define MDCONFIG_base 0x83000000
 #define MD2GCONFG_base 0x82C00000

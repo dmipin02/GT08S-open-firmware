@@ -10,8 +10,10 @@
 #include <drivers/nvic.h>
 #include <drivers/lrtimer.h>
 
+#define STRUP_CON0 (*(volatile uint16_t *)(PMU_base + 0x0A80))
+#define QI_PWRKEY_DEB (1 << 15)
 #define _DEBUG_ (1)
-#define _USEBATTERY_ (0)
+#define _USEBATTERY_ (1)
 
 int main(void)
 {
@@ -33,10 +35,12 @@ int main(void)
     // Signal about turning on the device
     HW_Vibro_Toggle(false);
     HW_LCD_SetISINKMode(false);
+    HW_LCD_Initialize();
     HW_LCD_SetISINKParameters(ISINK_CH0, IC_8mA, true);
 
     while (1)
     {
+        (STRUP_CON0 & QI_PWRKEY_DEB) ? HW_Vibro_Toggle(false) : HW_Vibro_Toggle(true);
         EM_ProcessEvents();
     }
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include <mt6261.h>
-#include <systypes.h>
+#include <picostd.h>
 
 #define ADIE_IRQ_MASK               (*(volatile uint16_t*)(ADIE_CIRQ_base + 0x0000))                //IRQ Mask 0x00 to 0x03
 #define ADIE_IRQ_MASK_ALL           0xFFFF
