@@ -1,5 +1,7 @@
 # GT08S-open-firmware
-Проект перенесен в организацию ChinaWatch-OS
+Проект перенесен в организацию ChinaWatch-OS.
+
+Project moved to ChinaWatch-OS organization.
 <!--
 ## TODO:
 - [X] Первичная инициализация железа (INT_BOOTLOADER)
